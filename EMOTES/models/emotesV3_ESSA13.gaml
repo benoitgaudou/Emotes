@@ -38,19 +38,19 @@ global {
 	int S;
 	
 	init {
-		loop i from: 0 to: guiltAversionInitMax*10 step: 1 {
-			create people number: 1 {
-				money <- moneyInit;
-				guiltAversion <- i/10;
-			}
-		}
-
 		game <- [
 			["C","C"]::[R,R],
 			["C","D"]::[S,T],
 			["D","C"]::[T,S],
 			["D","D"]::[P,P]
 		];
+				
+		loop i from: 0 to: guiltAversionInitMax*10 step: 1 {
+			create people number: 1 {
+				money <- moneyInit;
+				guiltAversion <- i/10;
+			}
+		}
 		
 		fileName <- "results" + length(people) + idealComputation + cycleToSave + '.csv';
 	 	fileNameObs <- "Recent" + length(people)+idealComputation + cycleToSave + '.csv';
@@ -254,6 +254,8 @@ species people {
 			}
 			add expectedUtility at: pchoice to: expectedUtilities;
 		}
+		
+		
 		if(playWithDebug) {write 'expectedUtilities star    ' + expectedUtilities; }
 		
 		if((expectedUtilities at "C") = (expectedUtilities at "D")){
